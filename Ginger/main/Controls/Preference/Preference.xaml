@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="Ginger.Controls.Preference.Preference"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:Ginger.Controls.Preference"
+             xmlns:behaviors="clr-namespace:Ginger.Behaviors"
+             mc:Ignorable="d" >
+    <Grid>
+        <DockPanel>
+            <WrapPanel DockPanel.Dock="Top">
+                <GroupBox Header="サーバー設定" HorizontalAlignment="Left" Margin="4, 4, 8, 4"  >
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Server URL :" HorizontalAlignment="Left" Margin="4"  Width="90"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding ServerUrl.Value}"  Width="240"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Server Status :" HorizontalAlignment="Left" Margin="4"  Width="90"/>
+                            <Label Content="{Binding ServerStatus.Value}" HorizontalAlignment="Left" Margin="4" />
+                        </StackPanel>
+                        <DockPanel>
+                            <Button x:Name="CheckServerConnectionButton" Content="接続テスト" HorizontalAlignment="Right" Click="CheckServerConnectionButton_Click"></Button>
+                        </DockPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="ユーザー設定" HorizontalAlignment="Left" Margin="4, 4, 8, 4"  >
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label  Content="Login ID :" HorizontalAlignment="Left" Margin="4"  Width="90"/>
+                            <TextBox  HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding LoginId.Value}" Width="240"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Password :" HorizontalAlignment="Left" Margin="4"  Width="90"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding LoginPassword.Value}"  Width="160"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Mail Address :" HorizontalAlignment="Left" Margin="4" Width="90"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding MailAddress.Value}" Width="160"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label  Content="User Name :" HorizontalAlignment="Left" Margin="4" Width="90"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding UserName.Value}"  Width="160"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Auth Token :" HorizontalAlignment="Left" Margin="4" Width="90"/>
+                            <Label Content="{Binding AuthToken.Value}" HorizontalAlignment="Left" Margin="4" />
+                        </StackPanel>
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button HorizontalContentAlignment="Right"  x:Name="RegisterButton" Margin="4" Content="ユーザー登録" HorizontalAlignment="Right" Click="RegisterButton_Click"></Button>
+                                <Button  HorizontalContentAlignment="Right" x:Name="AuthenticateButton" Margin="4" Content="ユーザー認証" HorizontalAlignment="Right" Click="AuthenticateButton_Click"></Button>
+                            </StackPanel>
+                        </DockPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding UserSettingsMessage.Value}" HorizontalAlignment="Left" Margin="8" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="収集設定" HorizontalAlignment="Left" Margin="4, 4, 8, 4"  >
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="収集フォルダ :" HorizontalAlignment="Left" Margin="4"  Width="90"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding TargetDirectoryPath.Value}"  Width="240"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="収集ファイル拡張子 :" HorizontalAlignment="Left" Margin="4"  Width="90"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding TargetFileExtensionList.Value}"  Width="240"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="フォルダ監視 :" HorizontalAlignment="Left" Margin="4"  Width="90"/>
+                            <ToggleButton x:Name="FileWatcherToggleButton" Content="-" 
+                                          Style="{StaticResource MaterialDesignActionLightToggleButton}"  Checked="FileWatcherToggleButton_Checked"
+                                          Unchecked="FileWatcherToggleButton_Unchecked"
+                          ToolTip="MaterialDesignActionLightToggleButton"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="検索設定" HorizontalAlignment="Left" Margin="4, 4, 8, 4"  >
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="1ページに表示する件数 :" HorizontalAlignment="Left" Margin="4"  Width="120"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4" TextWrapping="Wrap" Text="{Binding CountPerPage.Value}"  Width="210">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </WrapPanel>
+            <StackPanel DockPanel.Dock="Bottom">
+                <DockPanel>
+                    <Button x:Name="SaveButton" HorizontalAlignment="Right" Margin="4" Content="保存" Click="SaveButton_Click" ></Button>
+                </DockPanel>
+            </StackPanel>
+            <WrapPanel VerticalAlignment="Stretch">
+
+            </WrapPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

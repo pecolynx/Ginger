@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="Ginger.Controls.Search.Search"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ginger.Controls.Search"
+             xmlns:searchRecord="clr-namespace:Ginger.Controls.SearchRecord" 
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" >
+
+    <Grid>
+        <DockPanel >
+            <StackPanel DockPanel.Dock="Top">
+                <WrapPanel>
+                    <TextBox x:Name="SearchKeywordTextBox" HorizontalAlignment="Left" Height="26" Margin="10,10,10,10"
+                     TextWrapping="Wrap" Text="{Binding Path=SearchKeyword.Value,  UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="385" />
+                    <Button x:Name="button" HorizontalAlignment="Left" Height="28"  Margin="10,10,10,10" 
+                            VerticalAlignment="Top" Click="SearchButton_Click" IsDefault="True"
+                            IsEnabled="{Binding ButtonEnabled.Value}" Content="検索"/>
+                </WrapPanel>
+                <DockPanel Height="70">
+                    <ItemsControl ItemsSource="{Binding PageList.Value}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button x:Name="PageButton" Click="PageButton_Click"
+                                        IsEnabled="{Binding Enabled}"
+                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                        Margin="8" HorizontalAlignment="Left" Content="{Binding Text}"></Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <TextBlock DockPanel.Dock="Right" Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                       Margin="8 8 8 8" Text="{Binding SearchTimeString.Value}" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    </TextBlock>
+                    <TextBlock DockPanel.Dock="Right" Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                       Margin="8 8 8 8" Text="{Binding TotalHitCountString.Value}" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    </TextBlock>
+
+                </DockPanel>
+            </StackPanel>
+
+            <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" >
+                <StackPanel>
+                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
+                     Value="0" Width="100" Height="100"
+                     IsIndeterminate="True" Visibility="{Binding SearchProgressBarVisibility.Value}"
+                     VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12 12 12 12"/>
+                    <ListBox ItemsSource="{Binding HitList.Value}" MinHeight="200" 
+                         VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         Visibility="{Binding HitListVisibility.Value}">
+                        <ListBox.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <Border>
+                                    <ItemsPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate >
+                                <searchRecord:SearchRecord></searchRecord:SearchRecord>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</UserControl>

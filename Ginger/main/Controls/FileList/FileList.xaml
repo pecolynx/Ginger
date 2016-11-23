@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Ginger.Controls.FileList.FileList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ginger.Controls.FileList"
+             mc:Ignorable="d" >
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+
+            <Button x:Name="SearchButton" Content="同期対象ファイル一覧" HorizontalAlignment="Left" 
+                            Margin="10,10,10,10" VerticalAlignment="Top" Width="160"
+                            IsEnabled="{Binding ButtonEnabled.Value}" Click="SearchButton_Click"/>
+            <Button x:Name="GetLocalFileListButton" Content="ローカルファイル一覧" HorizontalAlignment="Left" 
+                            Margin="10,10,10,10" VerticalAlignment="Top" Width="160"
+                            IsEnabled="{Binding ButtonEnabled.Value}" Click="GetLocalFileListButton_Click"/>
+            <Button x:Name="GetServerFileListButton" Content="サーバーファイル一覧" HorizontalAlignment="Left" 
+                            Margin="10,10,10,10" VerticalAlignment="Top" Width="160"
+                            IsEnabled="{Binding ButtonEnabled.Value}" Click="GetServerFileListButton_Click"/>
+
+            <Button x:Name="SynchroButton" Content="同期" HorizontalAlignment="Left" 
+                            Margin="10,10,10,10" VerticalAlignment="Top" Width="120" 
+                            IsEnabled="{Binding ButtonEnabled.Value}" Click="SynchroButton_Click"/>
+            <Button x:Name="ClearButton" Content="初期化" HorizontalAlignment="Left"  
+                            Margin="10,10,10,10" VerticalAlignment="Top" Width="120" 
+                            IsEnabled="{Binding ButtonEnabled.Value}" Click="ClearButton_Click"/>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom">
+            <TextBlock  x:Name="Message" DockPanel.Dock="Bottom" Margin="4" Text="" ></TextBlock>
+            <ProgressBar Visibility="{Binding ProgressBarVisibility.Value}" Value="{Binding ProgressValue.Value}" Margin="4" Width="Auto" />
+        </StackPanel>
+
+        <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" >
+            <DataGrid x:Name="dataGrid" DockPanel.Dock="Top" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                   ItemsSource="{Binding FileInfoList.Value}" IsReadOnly="True"
+                  AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=FilePath}"
+                    CanUserReorder="True" CanUserResize="True"
+                    CanUserSort="True" Header="ファイルパス" Width="720" />
+                    <DataGridTextColumn Binding="{Binding Path=DocumentId}"
+                    CanUserReorder="True" CanUserResize="True"
+                    CanUserSort="True" Header="ドキュメントID" Width="160" />
+                    <DataGridTextColumn Binding="{Binding Path=Status}"
+                    CanUserReorder="True" CanUserResize="True"
+                    CanUserSort="True" Header="ステータス" Width="80" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

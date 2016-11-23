@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Ginger.Controls.SearchRecord.SearchRecord"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ginger.Controls.SearchRecord"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <WrapPanel>
+            <materialDesign:PopupBox  Margin="16,0,16,0" StaysOpen="True">
+                <StackPanel>
+                    <Button Click="OpenDirectory_Click">ファイルの場所を開く</Button>
+                </StackPanel>
+            </materialDesign:PopupBox>
+            <TextBlock x:Name="FileNameTextBlock" Margin="40, 2, 2, 2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                       DataContextChanged="FileNameTextBlock_DataContextChanged">
+                <Run Text="{Binding Document.FileName}"  FontSize="20" />
+            </TextBlock>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock x:Name="FileContentTextBlock" Margin="40, 2, 2, 2" TextWrapping="Wrap" Width="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                       DataContextChanged="FileContentTextBlock_DataContextChanged">
+                <Run Text="{Binding Document.FileContentForView}" />
+            </TextBlock>
+        </WrapPanel>
+        <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="2, 2, 20, 2"  Width="Auto" >
+                <Run Text="{Binding Document.FileCreatedAtForView}" />
+                </TextBlock>
+            <TextBlock Margin="2, 2, 20, 2" Width="Auto" >
+                <Run Text="{Binding Document.FileUpdatedAtForView}" />
+            </TextBlock>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

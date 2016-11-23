@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net" default-autowire="byName">
+
+  <object name="SearchHelper" type="Ginger.Controls.Search.SearchHelper" />
+
+  <object name="FileListHelper" type="Ginger.Controls.FileList.FileListHelper" />
+
+  <object name="SynchronizeDocumentFile" type="Ginger.Services.SynchronizeDocumentFile" />
+
+  <object name="FileWatcher" type="Ginger.Models.FileWatcher" />
+  
+  <!-- LocalDataBase -->
+
+  <object name="LocalDataBaseContext" type="Ginger.LocalDataBase.Config.LocalDataBaseContextImpl, Ginger.LocalDataBase" />
+
+  <object name="MigrateDataBase" type="Ginger.LocalDataBase.Services.MigrateDataBase, Ginger.LocalDataBase" />
+  
+  <object name="ClearDb" type="Ginger.LocalDataBase.Services.ClearDb, Ginger.LocalDataBase" />
+
+  <object name="AddLog" type="Ginger.LocalDataBase.Services.LogList.AddLog, Ginger.LocalDataBase" />
+  <object name="GetLogList" type="Ginger.LocalDataBase.Services.LogList.GetLogList, Ginger.LocalDataBase" />
+
+  <object name="AddLocalFile" type="Ginger.LocalDataBase.Services.LocalFile.AddLocalFile, Ginger.LocalDataBase" />
+  <object name="RemoveAllLocalFile" type="Ginger.LocalDataBase.Services.LocalFile.RemoveAllLocalFile, Ginger.LocalDataBase" />
+
+  <object name="AddServerFile" type="Ginger.LocalDataBase.Services.ServerFile.AddServerFile, Ginger.LocalDataBase" />
+  <object name="RemoveAllServerFile" type="Ginger.LocalDataBase.Services.ServerFile.RemoveAllServerFile, Ginger.LocalDataBase" />
+
+  <object name="GetDocumentIdByFilePathFromDataBase" type="Ginger.LocalDataBase.Services.GetDocumentIdByFilePathFromDataBase, Ginger.LocalDataBase" />
+
+  <object name="AddFileJobToDataBase" type="Ginger.LocalDataBase.Services.AddFileJobToDataBase, Ginger.LocalDataBase" />
+  <object name="GetFileJobList" type="Ginger.LocalDataBase.Services.GetFileJobList, Ginger.LocalDataBase" />
+  <object name="RemoveAllFileJob" type="Ginger.LocalDataBase.Services.RemoveAllFileJob, Ginger.LocalDataBase" />
+  
+  <object name="GetFileListToBeAdded" type="Ginger.LocalDataBase.Services.GetFileListToBeAdded, Ginger.LocalDataBase" />
+  <object name="GetFileListToBeRemoved" type="Ginger.LocalDataBase.Services.GetFileListToBeRemoved, Ginger.LocalDataBase" />
+  <object name="GetFileListToBeUpdated" type="Ginger.LocalDataBase.Services.GetFileListToBeUpdated, Ginger.LocalDataBase" />
+  <object name="GetFileInfoListToBeUpdated" type="Ginger.LocalDataBase.Services.GetFileInfoListToBeUpdated, Ginger.LocalDataBase" />
+
+  <object name="GetLocalFileList" type="Ginger.LocalDataBase.Services.LocalFile.GetLocalFileList, Ginger.LocalDataBase" />
+  <object name="GetServerFileList" type="Ginger.LocalDataBase.Services.ServerFile.GetServerFileList, Ginger.LocalDataBase" />
+
+  <object name="AddFileToDataBase" type="Ginger.LocalDataBase.Services.AddFileToDataBase, Ginger.LocalDataBase" />
+  <object name="RemoveFileToDataBase" type="Ginger.LocalDataBase.Services.RemoveFileToDataBase, Ginger.LocalDataBase" />
+  <object name="UpdateFileToDataBase" type="Ginger.LocalDataBase.Services.UpdateFileToDataBase, Ginger.LocalDataBase" />
+
+  <!-- Client -->
+
+  <object name ="DocumentFileService" type ="Ginger.Client.Services.DocumentFileService, Ginger.Client"/>
+
+  <object name ="AuthService" type ="Ginger.Client.Services.AuthService, Ginger.Client"/>
+
+
+
+
+</objects>
